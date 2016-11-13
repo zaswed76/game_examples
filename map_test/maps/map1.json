@@ -1,0 +1,35 @@
+{ "height":2,
+ "layers":[
+        {
+         "data":[129, 129, 129, 0, 0, 0],
+         "height":2,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":3,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "columns":32,
+         "firstgid":1,
+         "image":"..\/images\/rpg_maker_vx_rtp_tileset_by_telles0808.png",
+         "imageheight":2016,
+         "imagewidth":1024,
+         "margin":0,
+         "name":"rpg_maker_vx_rtp_tileset_by_telles0808",
+         "spacing":0,
+         "tilecount":2016,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "version":1,
+ "width":3
+}
