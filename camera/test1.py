@@ -1,3 +1,4 @@
+import csv
 import sys
 import pygame
 from pygame import *
@@ -17,6 +18,11 @@ FLAGS = 0
 CAMERA_SLACK = 30
 SPEED_X = 7
 SPEED_Y = 7
+
+def get_map(map):
+    reader = csv.reader(open(map), delimiter=',', quotechar='"')
+    return ([x for x in reader])
+
 def main():
     global cameraX, cameraY
     pygame.init()
@@ -33,11 +39,12 @@ def main():
     platforms = []
 
     x = y = 0
-    level = level_1.level
+    level = get_map('levels/map1.csv')
+    print(level)
     # build the level
     for row in level:
         for col in row:
-            if col == "P":
+            if col == 64:
                 p = Platform(x, y)
                 platforms.append(p)
                 entities.add(p)
