@@ -1,8 +1,8 @@
 import sys
 import pygame
-from pygame.sprite import Group
+
 import functions as gf
-from maps import config
+import map_config
 
 
 
@@ -17,7 +17,8 @@ def run_game():
     platforms = pygame.sprite.Group()
     targets = pygame.sprite.Group()
     # Запуск основного цикла игры.
-    gf.create_level(config.Map(), platforms, targets, screen)
+    map1 = map_config.map1
+    gf.create_level(map1, platforms, targets, screen)
     while True:
         # Отслеживание событий клавиатуры и мыши.
         for event in pygame.event.get():
@@ -25,8 +26,8 @@ def run_game():
                 sys.exit()
         screen.fill(BG_COLOR)
         # Отображение последнего прорисованного экрана.
-        platforms.draw(screen)
-        targets.draw(screen)
+        # platforms.draw(screen)
+        # targets.draw(screen)
         pygame.display.flip()
 
 run_game()
