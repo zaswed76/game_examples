@@ -2,6 +2,8 @@ import pygame
 from pygame.sprite import Sprite
 
 
+
+
 class Ship(Sprite):
     def __init__(self, screen, speedx, speedy, x, y):
         """Инициализирует корабль и задает его начальную позицию."""
@@ -16,7 +18,7 @@ class Ship(Sprite):
         # Загрузка изображения корабля и получение прямоугольника.
         self.image = pygame.image.load('images/ship.png')
         # self.image.set_colorkey((255, 255, 255))
-        # self.image.convert_alpha()
+        self.image.convert_alpha()
         self.rect = self.image.get_rect()
 
         self.rect.height = self.rect.height
@@ -24,7 +26,7 @@ class Ship(Sprite):
 
         # Каждый новый корабль появляется у нижнего края экрана.
         self.rect.centerx = 150
-        self.rect.bottom = self.screen_rect.bottom + 100
+        self.rect.centery = self.screen_rect.centery
 
         # Сохранение вещественной координаты центра корабля.
         self.center_x = float(self.rect.centerx)
@@ -36,25 +38,26 @@ class Ship(Sprite):
 
     def update(self, up, down, left, right, running, platforms):
         """Обновляет позицию корабля с учетом флага."""
-        if self.move:
-            self.speed_x = self.speedx
-            self.rect.centerx += self.speed_x
-            self.collisions(platforms, self.speed_x, 0)
+        # if self.move:
+        #     self.speed_x = self.speedx
+        #     self.rect.centerx += self.speed_x
+        #     self.collisions(platforms, self.speed_x, 0)
         if right:
-            self.speedx += 0.01
-            # self.rect.centerx += self.speed_x
+            self.speed_x = -self.speedx
+            self.rect.centerx += 3
             self.collisions(platforms, self.speed_x, 0)
 
         if left:
-            if self.speedx > 2:
-                self.speedx -= 0.05
-            # self.rect.centerx += self.speed_x
+
+            self.speed_x = self.speedx
+            self.rect.centerx += -3
             self.collisions(platforms, self.speed_x, 0)
         if up:
             self.speed_y = -self.speedy
             self.rect.centery += self.speed_y
             self.collisions(platforms, 0, self.speed_y)
         if down:
+            self.image = pygame.transform.rotate(self.image, 0.1)
             self.speed_y = self.speedy
             self.rect.centery += self.speed_y
             self.collisions(platforms, 0, self.speed_y)
@@ -76,3 +79,11 @@ class Ship(Sprite):
                     self.rect.top = p.rect.bottom
                 elif speed_y > 0:
                     self.rect.bottom = p.rect.top
+
+    def rot_center(self, image, angle):
+        """rotate a Surface, maintaining position."""
+
+        loc = image.get_rect().center  #rot_image is not defined
+        rot_sprite = pygame.transform.rotate(image, angle)
+        rot_sprite.get_rect().center = loc
+        return rot_sprite
