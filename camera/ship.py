@@ -7,6 +7,7 @@ class Ship(Sprite):
         """Инициализирует корабль и задает его начальную позицию."""
 
         super().__init__()
+        self.move = True
         self.speedx = speedx
         self.speedy = speedy
         self.speed_x = 0
@@ -29,22 +30,25 @@ class Ship(Sprite):
         self.center_x = float(self.rect.centerx)
         self.center_y = float(self.rect.centery)
 
-
-
     def blitme(self):
         """Рисует корабль в текущей позиции."""
         self.screen.blit(self.image, self.rect)
 
     def update(self, up, down, left, right, running, platforms):
         """Обновляет позицию корабля с учетом флага."""
-        if right :
+        if self.move:
             self.speed_x = self.speedx
             self.rect.centerx += self.speed_x
             self.collisions(platforms, self.speed_x, 0)
+        if right:
+            self.speedx += 0.01
+            # self.rect.centerx += self.speed_x
+            self.collisions(platforms, self.speed_x, 0)
 
         if left:
-            self.speed_x = -self.speedx
-            self.rect.centerx += self.speed_x
+            if self.speedx > 2:
+                self.speedx -= 0.05
+            # self.rect.centerx += self.speed_x
             self.collisions(platforms, self.speed_x, 0)
         if up:
             self.speed_y = -self.speedy
@@ -55,30 +59,20 @@ class Ship(Sprite):
             self.rect.centery += self.speed_y
             self.collisions(platforms, 0, self.speed_y)
 
-        if not(left or right or up or down): # стоим, когда нет указаний идти
+        if not (
+                    left or right or up or down):  # стоим, когда нет указаний идти
             self.speed_x = 0
             self.speed_y = 0
 
-
-
-
-
-
-
-
-
-
-
-
-
     def collisions(self, platforms, speed_x, speed_y):
-      for p in platforms:
-          if pygame.sprite.collide_rect(self, p):
-              if speed_x < 0:
-                  self.rect.left = p.rect.right
-              elif speed_x > 0:
-                  self.rect.right = p.rect.left
-              elif speed_y < 0:
-                  self.rect.top = p.rect.bottom
-              elif speed_y > 0:
-                  self.rect.bottom = p.rect.top
+        for p in platforms:
+            if pygame.sprite.collide_rect(self, p):
+                if speed_x < 0:
+                    self.rect.left = p.rect.right
+                elif speed_x > 0:
+
+                    self.rect.right = p.rect.left
+                elif speed_y < 0:
+                    self.rect.top = p.rect.bottom
+                elif speed_y > 0:
+                    self.rect.bottom = p.rect.top

@@ -16,8 +16,8 @@ DISPLAY = (WIN_WIDTH, WIN_HEIGHT)
 DEPTH = 32
 FLAGS = 0
 CAMERA_SLACK = 30
-SPEED_X = 7
-SPEED_Y = 7
+SPEED_X = 1.5
+SPEED_Y = 5
 
 def get_map(map):
     reader = csv.reader(open(map), delimiter=',', quotechar='"')
@@ -44,7 +44,7 @@ def main():
     # build the level
     for row in level:
         for col in row:
-            if col == 64:
+            if col == '64':
                 p = Platform(x, y)
                 platforms.append(p)
                 entities.add(p)
