@@ -1,6 +1,8 @@
 import sys
 import os
+
 import pygame
+from pygame.sprite import Group
 import paths
 from settings import Settings
 import level_map as lm
@@ -12,15 +14,21 @@ def run_game():
     pygame.init()
     screen = pygame.display.set_mode((st.screen_width, st.screen_height))
     pygame.display.set_caption("Name Game")
-    # Запуск основного цикла игры.
+
     level = lm.LevelMap(level_1, screen)
-    # level.create_background()
+    bg_layer = Group()
+    bg_layer.add(level.create_background())
+
+    all_layers = pygame.sprite.LayeredUpdates()
+    all_layers.add(bg_layer)
+    # Запуск основного цикла игры.
     while True:
         # Отслеживание событий клавиатуры и мыши.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
         # Отображение последнего прорисованного экрана.
+        all_layers.draw(screen)
         pygame.display.flip()
 
 run_game()

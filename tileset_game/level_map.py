@@ -39,7 +39,16 @@ class MapParser:
         self.level_map = self.get_level(level_map)
         self.layers = self.level_map['layers']
         self.tilewidth = self.level_map['tilewidth']
-        self.background = None
+        self.bg_image = None
+
+        self.parse_layers()
+
+    def parse_layers(self):
+        for layer in self.layers:
+            if layer['type'] == 'imagelayer':
+                self.bg_image = layer['image']
+
+
 
     def get_level(self, level_map):
         with open(level_map, "r") as f:
@@ -63,7 +72,7 @@ class LevelMap:
         self.map_parser = MapParser(level)
 
     def create_background(self):
-       return Background(self.screen, self.image_background)
+       return Background(self.screen, self.map_parser.bg_image)
 
 
 
@@ -76,4 +85,5 @@ if __name__ == '__main__':
     pth_map = os.path.join(paths.maps, 'test_num_5.json')
     mp = LevelMap(pth_map, screen)
     # mp.map_parser.print()
-    mp.map_parser.print_layers()
+    # mp.map_parser.print_layers()
+    print(mp.map_parser.bg_image)
