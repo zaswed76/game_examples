@@ -1,0 +1,35 @@
+{ "height":10,
+ "layers":[
+        {
+         "data":[1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 11, 14, 15, 16],
+         "height":10,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tileheight":100,
+ "tilesets":[
+        {
+         "columns":4,
+         "firstgid":1,
+         "image":"1-7sq.png",
+         "imageheight":400,
+         "imagewidth":400,
+         "margin":0,
+         "name":"1-7sq",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":100,
+         "tilewidth":100
+        }],
+ "tilewidth":100,
+ "version":1,
+ "width":10
+}
