@@ -6,14 +6,14 @@ COLOR =  "#04304F"
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
-    screen = pygame.display.set_mode((1600, 600))
+    screen = pygame.display.set_mode((500, 500))
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
 
-    bg = pygame.image.load('images/bg.jpg').convert()
+    # bg = pygame.image.load('images/bg.jpg').convert()
     ship = Ship(screen)
-    sb = SubSprite('../images/man.png', 118, 136)
-    man1 = sb.get_sprite(8)
+    # sb = SubSprite('../images/man.png', 118, 136)
+    # man1 = sb.get_sprite(8)
     timer = pygame.time.Clock()
     while True:
         timer.tick(120)
@@ -23,8 +23,8 @@ def run_game():
                 sys.exit()
         # Отображение последнего прорисованного экрана.
         screen.fill(pygame.Color(COLOR))
-        screen.blit(bg, bg.get_rect())
-        screen.blit(man1, man1.get_rect())
+        # screen.blit(bg, bg.get_rect())
+
         ship.update()
         ship.blitme()
 

@@ -20,11 +20,10 @@ ANIMATION_RIGHT = [
             ('images/ship/ship2.png', 0.1)
 ]
 
-sub = SubSprite('../images/man.png', 118, 136)
-sp = sub.get_sprites_back(4)
-print(sp)
-print(len(len(sp)*[0.02]))
-spr = sub.get_sprite_time(sub.get_sprites(), 0.03)
+sub = SubSprite('../images/numbers.png', 100, 100)
+sp = sub.get_sprites(3, 4)
+
+spr = sub.get_sprite_time(sub.get_sprites(), ANIMATION_DELAY)
 ANIMATION_RIGHT2 = spr
 
 
@@ -44,9 +43,9 @@ class Ship(Sprite):
         super().__init__()
         self.screen = screen
         # Загрузка изображения корабля и получение прямоугольника.
-        self.image = pygame.Surface((118,136))
+        self.image = pygame.Surface((100,100))
         self.image.set_colorkey(Color(COLOR)) # делаем фон прозрачным
-        self.rect = pygame.Rect(0, 0, 118, 136) # прямоугольный объект
+        self.rect = pygame.Rect(0, 0, 100, 100) # прямоугольный объект
 
         self.screen_rect = screen.get_rect()
         self.center_x = float(self.rect.centerx)
@@ -60,7 +59,7 @@ class Ship(Sprite):
         self.screen.blit(self.image, self.rect)
 
     def update(self, *args):
-        self.center_x += 3
+        self.center_x += 0
 
         self.rect.centerx = self.center_x
         self.image.fill(Color(COLOR))
