@@ -3,6 +3,7 @@ import json
 import pygame
 from pygame.sprite import Sprite
 
+
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):
         super().__init__(*groups)
@@ -22,10 +23,6 @@ class Background(AbsSprite):
         super().__init__(screen, image, alpha, *groups)
 
 
-
-
-
-
 class Layers:
     def __init__(self):
         """
@@ -40,6 +37,7 @@ class MapParser:
         self.layers = self.level_map['layers']
         self.tilewidth = self.level_map['tilewidth']
         self.bg_image = None
+        self.tile_layers = []
 
         self.parse_layers()
 
@@ -47,8 +45,8 @@ class MapParser:
         for layer in self.layers:
             if layer['type'] == 'imagelayer':
                 self.bg_image = layer['image']
-
-
+            elif layer['type'] == 'tilelayer':
+                self.tile_layers.append(layer['data'])
 
     def get_level(self, level_map):
         with open(level_map, "r") as f:
@@ -64,26 +62,38 @@ class MapParser:
             print('------------------')
 
 
-
 class LevelMap:
-    def __init__(self, level, screen):
+    def __init__(self, level, screen, all_layers):
+        self.all_layers = all_layers
         self.image_background = None
         self.screen = screen
         self.map_parser = MapParser(level)
 
-    def create_background(self):
-       return Background(self.screen, self.map_parser.bg_image)
+    def create_background(self, group):
+        bg = Background(self.screen, self.map_parser.bg_image)
+        group.add(bg)
+        self.all_layers.add(group)
 
+    def draw_layers(self):
+        self.all_layers.draw(self.screen)
 
+    def create_map(self, *groups):
+        for group, lay in zip(groups, self.map_parser.tile_layers):
+            print(group, lay, sep='=')
+
+    def creare_layer(self, group, data):
+        pass
 
 if __name__ == '__main__':
     import os
     import paths
     import pygame
+    from pygame.sprite import Group
     pygame.init()
     screen = pygame.display.set_mode((150, 150))
-    pth_map = os.path.join(paths.maps, 'test_num_5.json')
-    mp = LevelMap(pth_map, screen)
+    pth_map = os.path.join(paths.maps, 'test_num_6_500.json')
+    mp = LevelMap(pth_map, screen, Group())
     # mp.map_parser.print()
-    # mp.map_parser.print_layers()
-    print(mp.map_parser.bg_image)
+    # print(mp.map_parser.tile_layers)
+    # print(mp.map_parser.bg_image)
+    mp.create_map()
