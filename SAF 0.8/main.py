@@ -27,7 +27,7 @@ def is_ok(func):
         f = func(*arg, **kwards)
         t2 = time.time()
 
-        print '%s is done.  time - %s ' % (func.__name__, t2 - t1)
+        print('%s is done.  time - %s ' % (func.__name__, t2 - t1))
         return f
     return call_f
 
@@ -527,7 +527,7 @@ def main():
     clock = pygame.time.Clock()
     running = True
     t2 = time.time()
-    print 'init time = ', t2 - t1
+    print('init time = ', t2 - t1)
     while running:
         t1 = time.time()
         for event in pygame.event.get():
