@@ -5,7 +5,7 @@ import pygame
 from pygame.sprite import Group
 import paths
 from settings import Settings
-import level_map as lm
+from libs import level_map as lm
 
 st = Settings()
 level_1 = os.path.join(paths.maps, 'test_num_6_500.json')
@@ -15,19 +15,20 @@ def run_game():
     screen = pygame.display.set_mode((st.screen_width, st.screen_height))
     pygame.display.set_caption("Name Game")
 
-    all_layers = pygame.sprite.LayeredUpdates()
-    level = lm.LevelMap(level_1, screen, all_layers)
-    # фон
+    # все слои  для рисования
+    all_layers = pygame.sprite.OrderedUpdates()
+
+    # слои соответствуют слоям в Tiled
     bg_layer = Group()
-    level.create_background(bg_layer)
-
-
-    # карта
     wall = Group()
     dors = Group()
     box = Group()
-    all_layers.add(wall, dors, box)
+
+    # создаём уровень
+    level = lm.LevelMap(level_1, screen, all_layers)
+    level.create_background(bg_layer)
     level.create_map(wall, dors, box)
+
 
     # Запуск основного цикла игры.
     while True:

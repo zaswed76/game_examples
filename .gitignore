@@ -89,3 +89,5 @@ ENV/
 .ropeproject
 
 # Created by .ignore support plugin (hsz.mobi)
+/SAF 0.8/
+.idea/workspace.xml

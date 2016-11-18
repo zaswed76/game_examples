@@ -4,7 +4,6 @@ import pygame
 class Platform(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        # self.image.fill(pygame.Color("#DDDDDD"))
         self.image = pygame.image.load('images/platform.jpg')
         self.image.convert()
 
