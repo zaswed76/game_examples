@@ -15,6 +15,9 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    print(1)
         # Отображение последнего прорисованного экрана.
         sq.draw()
         pygame.display.flip()
