@@ -2,7 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/tank" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/menu" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tileset_game" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SAF 0.8" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/controller_test" isTestSource="false" />

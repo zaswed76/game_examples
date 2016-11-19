@@ -2,7 +2,9 @@ import sys
 import pygame
 
 import functions as gf
-import map_config
+from menu import Menu
+from game_window import GameWindow
+
 
 
 
@@ -13,12 +15,8 @@ def run_game():
     pygame.init()
     screen = pygame.display.set_mode((640, 640))
     pygame.display.set_caption("Tanks")
-
-    platforms = pygame.sprite.Group()
-    targets = pygame.sprite.Group()
-    # Запуск основного цикла игры.
-    map1 = map_config.map1
-    gf.create_level(map1, platforms, targets, screen)
+    game_run = False
+    menu = Menu(screen)
     while True:
         # Отслеживание событий клавиатуры и мыши.
         for event in pygame.event.get():
@@ -28,6 +26,8 @@ def run_game():
         # Отображение последнего прорисованного экрана.
         # platforms.draw(screen)
         # targets.draw(screen)
+        if not game_run:
+            menu.draw()
         pygame.display.flip()
 
 run_game()
