@@ -5,5 +5,5 @@ class Settings:
         """
 
         """
-        self.screen_width = 500
-        self.screen_height = 500
+        self.screen_width = 640
+        self.screen_height = 640

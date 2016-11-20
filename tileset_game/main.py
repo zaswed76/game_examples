@@ -8,7 +8,7 @@ from settings import Settings
 from libs import level_map as lm
 
 st = Settings()
-level_1 = os.path.join(paths.maps, 'test_num_6_500.json')
+level_1 = os.path.join(paths.maps, 'new.json')
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
@@ -22,12 +22,13 @@ def run_game():
     bg_layer = Group()
     wall = Group()
     dors = Group()
-    box = Group()
-
+    wall2 = Group()
+    # box = Group()
+    #
     # создаём уровень
     level = lm.LevelMap(level_1, screen, all_layers)
     level.create_background(bg_layer)
-    level.create_map(wall, dors, box)
+    level.create_map(wall, dors, wall2)
 
 
     # Запуск основного цикла игры.

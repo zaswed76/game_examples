@@ -1,0 +1,16 @@
+{ "columns":4,
+ "image":"1-7sq.png",
+ "imageheight":400,
+ "imagewidth":400,
+ "margin":0,
+ "name":"1-7sq",
+ "spacing":0,
+ "terrains":[
+        {
+         "name":"\u041d\u043e\u0432\u044b\u0439 \u0443\u0447\u0430\u0441\u0442\u043e\u043a",
+         "tile":-1
+        }],
+ "tilecount":16,
+ "tileheight":100,
+ "tilewidth":100
+}

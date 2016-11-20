@@ -1,10 +1,10 @@
 import json
-
+import os
 import pygame
 from pygame.sprite import Sprite
 from platform import Platform
 from libs import subsprite
-
+from tileset_game import paths
 
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):
@@ -40,6 +40,9 @@ class MapParser:
         self.tilewidth = self.level_map['tilesets'][0]['tilewidth']
         self.tileheight = self.level_map['tilesets'][0]['tileheight']
         self.set_image = self.level_map['tilesets'][0]['image']
+        print(os.path.dirname(self.set_image))
+        print(os.path.abspath(self.set_image))
+        # print(os.path.join(paths.root, os.path.abspath(self.set_image)))
         self.width = self.level_map['width']
         self.bg_image = None
         self.tile_layers = []
@@ -125,10 +128,12 @@ if __name__ == '__main__':
 
     pygame.init()
     screen = pygame.display.set_mode((150, 150))
-    pth_map = os.path.join(paths.maps, 'test_num_6_500.json')
-    mp = LevelMap(pth_map, screen, Group())
-    print(mp.map_parser.level_map['tilesets'])
+    pth_map = os.path.join(paths.maps, 'new2.json')
+    print(paths.root)
+    print(pth_map)
+    # mp = LevelMap(pth_map, screen, Group())
+    # print(mp.map_parser.level_map['tilesets'])
     # mp.map_parser.print()
     # print(mp.map_parser.tile_layers)
     # print(mp.map_parser.bg_image)
-    mp.create_map()
+    # mp.create_map()
